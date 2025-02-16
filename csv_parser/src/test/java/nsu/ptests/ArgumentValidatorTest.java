@@ -3,6 +3,8 @@ package nsu.ptests;
 import nsu.parser.io.*;
 import nsu.parser.*;
 import nsu.parser.exceptions.*;
+import nsu.parser.validators.ArgumentValidator;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

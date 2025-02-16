@@ -1,10 +1,12 @@
-package nsu.parser.io;
+package nsu.parser.validators;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 import nsu.parser.exceptions.*;
-
+/**
+ * Класс выполняющий валидацию консольных аргументов.
+ */
 public class ArgumentValidator {
     private static final int VALID_COUNT_ARGS = 2;
 

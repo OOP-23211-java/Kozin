@@ -1,12 +1,16 @@
 package nsu.parser;
 
 import nsu.parser.io.*;
+import nsu.parser.validators.ArgumentValidator;
 import nsu.parser.interfaces.*;
 
 import java.nio.file.Path;
 
 import com.google.common.collect.Multiset;
-
+/**
+ * Основной класс, задача которого заключается в преобразовании
+ * TXT в CSV формат.
+ */
 public class App {
     public static void main(String[] args) { 
         try {
