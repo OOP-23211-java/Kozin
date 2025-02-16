@@ -1,4 +1,4 @@
-package com.example.exceptions;
+package nsu.parser.exceptions;
 
 public class InvalidInputFileException extends RuntimeException {
     public InvalidInputFileException(String message) {

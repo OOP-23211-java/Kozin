@@ -1,7 +1,9 @@
-/home/ichevell/Programming/OOP/csv_parser/src/main/java/com/example/exceptions/InvalidCountArgsException.java
-/home/ichevell/Programming/OOP/csv_parser/src/main/java/com/example/exceptions/InvalidReadFromFileException.java
-/home/ichevell/Programming/OOP/csv_parser/src/main/java/com/example/io/Writer.java
-/home/ichevell/Programming/OOP/csv_parser/src/main/java/com/example/App.java
-/home/ichevell/Programming/OOP/csv_parser/src/main/java/com/example/io/Reader.java
-/home/ichevell/Programming/OOP/csv_parser/src/main/java/com/example/exceptions/InvalidInputFileException.java
-/home/ichevell/Programming/OOP/csv_parser/src/main/java/com/example/io/ArgumentParser.java
+/home/ichevell/Programming/OOP/Kozin/csv_parser/src/main/java/nsu/parser/App.java
+/home/ichevell/Programming/OOP/Kozin/csv_parser/src/main/java/nsu/parser/exceptions/InvalidCountArgsException.java
+/home/ichevell/Programming/OOP/Kozin/csv_parser/src/main/java/nsu/parser/interfaces/IWriter.java
+/home/ichevell/Programming/OOP/Kozin/csv_parser/src/main/java/nsu/parser/io/Writer.java
+/home/ichevell/Programming/OOP/Kozin/csv_parser/src/main/java/nsu/parser/interfaces/IStatReader.java
+/home/ichevell/Programming/OOP/Kozin/csv_parser/src/main/java/nsu/parser/io/ArgumentValidator.java
+/home/ichevell/Programming/OOP/Kozin/csv_parser/src/main/java/nsu/parser/exceptions/InvalidReadFromFileException.java
+/home/ichevell/Programming/OOP/Kozin/csv_parser/src/main/java/nsu/parser/exceptions/InvalidInputFileException.java
+/home/ichevell/Programming/OOP/Kozin/csv_parser/src/main/java/nsu/parser/io/StatReader.java
