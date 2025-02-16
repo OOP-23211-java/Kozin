@@ -1,9 +1,0 @@
-nsu/parser/interfaces/IStatReader.class
-nsu/parser/exceptions/InvalidInputFileException.class
-nsu/parser/exceptions/InvalidCountArgsException.class
-nsu/parser/io/Writer.class
-nsu/parser/interfaces/IWriter.class
-nsu/parser/App.class
-nsu/parser/exceptions/InvalidReadFromFileException.class
-nsu/parser/io/StatReader.class
-nsu/parser/io/ArgumentValidator.class
