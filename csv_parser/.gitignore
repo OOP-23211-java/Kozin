@@ -1,0 +1,4 @@
+/target
+*.txt
+*.csv
+test/java/nsu/txt/real_output.csv
