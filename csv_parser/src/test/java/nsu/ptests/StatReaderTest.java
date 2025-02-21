@@ -4,7 +4,8 @@ import java.nio.file.Path;
 
 import nsu.parser.*;
 import nsu.parser.io.*;
-import nsu.parser.interfaces.IStatReader;
+import nsu.parser.io.interfaces.IStatReader;
+import java.io.FileNotFoundException;
 import nsu.parser.exceptions.*;
 
 import org.junit.jupiter.api.Test;
@@ -27,7 +28,8 @@ public class StatReaderTest {
 
     @Test
     void testInputFile() {
-        assertThrows(InvalidInputFileException.class, () -> new StatReader(Path.of("")).getWordStatMultiset());
-        assertThrows(InvalidInputFileException.class, () -> new StatReader(Path.of("why")).getWordStatMultiset());
+        assertThrows(FileNotFoundException.class, () -> new StatReader(Path.of("")).getWordStatMultiset());
+        assertThrows(FileNotFoundException.class, () -> new StatReader(Path.of("why")).getWordStatMultiset());
     }
+    
 }

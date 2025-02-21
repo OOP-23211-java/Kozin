@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import nsu.parser.App;
-import nsu.parser.exceptions.InvalidCountArgsException;
 import nsu.parser.io.*;
 
 
@@ -16,7 +15,7 @@ public class AppTest {
     
     @Test
     void testCountArgsApp() {
-        assertThrows(InvalidCountArgsException.class, () -> App.main(new String[]{"Hello"}));
+        assertThrows(IllegalArgumentException.class, () -> App.main(new String[]{"Hello"}));
     }
 
     @Test
@@ -32,4 +31,5 @@ public class AppTest {
 
         assertArrayEquals(expectedOutputFile, realOutputFile);
     }
+    
 }

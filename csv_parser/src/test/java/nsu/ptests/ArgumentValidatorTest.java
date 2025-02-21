@@ -2,7 +2,6 @@ package nsu.ptests;
 
 import nsu.parser.io.*;
 import nsu.parser.*;
-import nsu.parser.exceptions.*;
 import nsu.parser.validators.ArgumentValidator;
 
 import org.junit.jupiter.api.Test;
@@ -12,7 +11,8 @@ public class ArgumentValidatorTest {
     
     @Test
     void testCountArgs() {
-        assertThrows(InvalidCountArgsException.class, () -> ArgumentValidator.validate(null));
-        assertThrows(InvalidCountArgsException.class, () -> ArgumentValidator.validate(new String[]{"why", "hello", "lol"}));
+        assertThrows(IllegalArgumentException.class, () -> ArgumentValidator.validate(null));
+        assertThrows(IllegalArgumentException.class, () -> ArgumentValidator.validate(new String[]{"why", "hello", "lol"}));
     }
+    
 }
