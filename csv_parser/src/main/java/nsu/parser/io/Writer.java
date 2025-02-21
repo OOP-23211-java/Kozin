@@ -51,8 +51,8 @@ public class Writer implements IWriter {
      *
      * @param outputFilePath путь к выходному файлу CSV.
      */
-    public Writer(Path outputFilePath) {
-        this.outputFilePath = outputFilePath;
+    public Writer(String outputFilePath) {
+        this.outputFilePath = Path.of(outputFilePath);
     }
 
     /**
@@ -77,7 +77,7 @@ public class Writer implements IWriter {
     }
 
     private void writeFromSortedMap(Multimap<Integer, String> sortedWordCountMap) {
-        try (BufferedWriter writer = Files.newBufferedWriter(outputFilePath, StandardOpenOption.CREATE, StandardOpenOption.APPEND)) {
+        try (BufferedWriter writer = Files.newBufferedWriter(outputFilePath, StandardOpenOption.CREATE)) {
             for (var countAndWordPair : sortedWordCountMap.entries()) {
                 writer.write(countAndWordPair.getValue() + "\t" + countAndWordPair.getKey());
                 writer.newLine();

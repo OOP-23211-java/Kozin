@@ -8,20 +8,28 @@ import java.io.FileNotFoundException;
 import nsu.parser.exceptions.*;
 
 /**
- * Класс {@code ArgumentValidator} выполняет валидацию аргументов командной строки для программы,
- * преобразующей текстовый файл в CSV. Он проверяет количество аргументов и существование входного файла.
- *
- * <p>После успешной валидации возвращает объект {@link ValidatedArguments}, содержащий пути к 
- * входному и выходному файлам.</p>
- *
- * <p><b>Функциональность:</b></p>
+ * Класс {@code ArgumentValidator} выполняет валидацию аргументов командной строки для программы, 
+ * преобразующей текстовый файл в CSV.  
+ * <p>
+ * Проверяет:
  * <ul>
- *     <li>Проверка количества аргументов командной строки.</li>
- *     <li>Проверка существования указанного входного файла.</li>
- *     <li>Возврат валидированных путей в виде объекта {@link ValidatedArguments}.</li>
+ *     <li>Количество переданных аргументов.</li>
+ *     <li>Существование и доступность для чтения входного файла.</li>
+ *     <li>Корректность пути и права на создание/запись выходного файла.</li>
+ * </ul>
+ * </p>
+ *
+ * <p>После успешной валидации возвращает объект {@link ValidatedArguments}, содержащий валидированные 
+ * пути к входному и выходному файлам.</p>
+ *
+ * <h3>Особенности:</h3>
+ * <ul>
+ *     <li>Гарантирует, что программа не будет работать с несуществующими файлами или директориями.</li>
+ *     <li>Обеспечивает корректную обработку прав доступа для создания и записи в выходной файл.</li>
+ *     <li>Использует {@link IllegalArgumentException} для информирования о некорректных аргументах.</li>
  * </ul>
  *
- * <p><b>Пример использования:</b></p>
+ * <h3>Пример использования:</h3>
  * <pre>{@code
  * String[] args = {"input.txt", "output.csv"};
  * var validatedArgs = ArgumentValidator.validate(args);
@@ -35,10 +43,11 @@ public class ArgumentValidator {
     private static final int VALID_COUNT_ARGS = 2;
 
     /**
-     * Выполняет валидацию аргументов командной строки.
+     * Выполняет валидацию аргументов командной строки:
      * <ul>
-     *     <li>Проверяет, что количество аргументов соответствует {@code VALID_COUNT_ARGS}.</li>
-     *     <li>Проверяет существование входного файла по указанному пути.</li>
+     *     <li>Проверяет, что количество аргументов равно {@link #VALID_COUNT_ARGS}.</li>
+     *     <li>Проверяет существование и доступность входного файла.</li>
+     *     <li>Проверяет возможность создания или записи в выходной файл.</li>
      * </ul>
      *
      * @param args массив аргументов командной строки:
@@ -46,12 +55,14 @@ public class ArgumentValidator {
      *                 <li>{@code args[0]} — путь к входному текстовому файлу;</li>
      *                 <li>{@code args[1]} — путь к выходному CSV файлу.</li>
      *             </ul>
-     * @return объект {@link ValidatedArguments}, содержащий валидированные пути.
-     * @throws IllegalArgumentException если количество аргументов неверное или входной файл не существует.
+     * @return объект {@link ValidatedArguments} с валидированными путями.
+     * @throws IllegalArgumentException если количество аргументов неверное, 
+     *                                  входной файл не существует или отсутствуют права на запись в выходной файл.
      */
     public static ValidatedArguments validate(String[] args) {
         validateCountArgs(args.length);
         validateInputFilePath(args[0]);
+        validateOutputFilePath(args[1]);
 
         return new ValidatedArguments(args[0], args[1]);
     }
@@ -66,6 +77,24 @@ public class ArgumentValidator {
         Path path = Path.of(inputFilePath);
         if (Files.notExists(path)) {
             throw new IllegalArgumentException("Failed open file " + inputFilePath);
+        }
+    }
+
+    private static void validateOutputFilePath(String outputFilePath) {
+        Path path = Path.of(outputFilePath);
+        Path parentDir = path.getParent();
+        if (parentDir != null && Files.notExists(parentDir)) {
+            throw new IllegalArgumentException("Failed find directory " + parentDir);
+        }
+
+        if (parentDir != null && !Files.isWritable(parentDir)) {
+            throw new IllegalArgumentException("Don't have permission to create output file " + path);
+        }
+
+        if (Files.exists(path)) {
+            if (!Files.isWritable(path)) {
+                throw new IllegalArgumentException("Don't have permission to edit file" + path);
+            }
         }
     }
 

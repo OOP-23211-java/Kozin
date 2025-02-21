@@ -44,8 +44,8 @@ public class StatReader implements IStatReader {
      *
      * @param inputFilePath путь к текстовому файлу для чтения слов.
      */
-    public StatReader(Path inputFilePath) {
-        this.inputFilePath = inputFilePath;        
+    public StatReader(String inputFilePath) {
+        this.inputFilePath = Path.of(inputFilePath);        
     }
 
     /**

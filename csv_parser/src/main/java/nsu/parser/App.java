@@ -42,19 +42,18 @@ public class App {
     public static void main(String[] args) { 
         try {
             var validArgs = ArgumentValidator.validate(args);
-            convertToCSV(Path.of(validArgs.inputFilePath()), Path.of(validArgs.outputFilePath()));
+            convertToCSV(validArgs);
         } catch (RuntimeException e) {
             System.err.println("Error: " + e.getMessage());
         }
     }
 
-    private static void convertToCSV(Path inputFilePath, Path outputFilePath) {
-        IStatReader statReader = new StatReader(inputFilePath);
+    private static void convertToCSV(ArgumentValidator.ValidatedArguments validArgs) {
+        IStatReader statReader = new StatReader(validArgs.inputFilePath());
         Multiset<String> wordStatMultiset = statReader.getWordStatMultiset();
 
-        IWriter writer = new Writer(outputFilePath);
+        IWriter writer = new Writer(validArgs.outputFilePath());
         writer.writeCSV(wordStatMultiset);
-
     }
     
 }
